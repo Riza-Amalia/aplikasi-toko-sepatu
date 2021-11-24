@@ -1,4 +1,5 @@
 import 'package:aplikasi_toko_sepatu/pages/signup.dart';
+import 'package:aplikasi_toko_sepatu/pages/signin.dart';
 import 'package:aplikasi_toko_sepatu/pages/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => SplashPage(),
+        '/sign-in': (context) => SignInPage(),
         '/sign-up': (context) => SignUpPage(),
       },
     );

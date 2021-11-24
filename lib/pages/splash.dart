@@ -15,7 +15,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   getInit() async {
-    Navigator.pushNamed(context, '/sign-up');
+    Navigator.pushNamed(context, '/sign-in');
   }
 
   Widget build(BuildContext context) {
