@@ -1,4 +1,3 @@
-import 'package:aplikasi_toko_sepatu/pages/signup.dart';
 import 'package:aplikasi_toko_sepatu/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -9,9 +8,8 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   TextEditingController emailController = TextEditingController(text: '');
-  TextEditingController passwordController = TextEditingController(text: '');
 
-  bool isLoading = false;
+  TextEditingController passwordController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,7 @@ class _SignInPageState extends State<SignInPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Sign In',
+              'Login',
               style: primaryTextStyle.copyWith(
                 fontSize: 24,
                 fontWeight: semiBold,
@@ -32,7 +30,7 @@ class _SignInPageState extends State<SignInPage> {
               height: 2,
             ),
             Text(
-              'Sign In and Happy Shoping',
+              'Sign In to Continue',
               style: subtitleTextStyle,
             ),
           ],
@@ -42,7 +40,7 @@ class _SignInPageState extends State<SignInPage> {
 
     Widget emailInput() {
       return Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: EdgeInsets.only(top: 70),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -132,8 +130,8 @@ class _SignInPageState extends State<SignInPage> {
                     Expanded(
                       child: TextFormField(
                         style: primaryTextStyle,
-                        obscureText: true,
                         controller: passwordController,
+                        obscureText: true,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Password',
                           hintStyle: subtitleTextStyle,
@@ -150,25 +148,23 @@ class _SignInPageState extends State<SignInPage> {
     }
 
     Widget signInButton() {
-      return Flexible(
-        child: Container(
-          height: 50,
-          width: double.infinity,
-          margin: EdgeInsets.only(top: 30),
-          child: TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              backgroundColor: primaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
+      return Container(
+        height: 50,
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 50),
+        child: TextButton(
+          onPressed: () {},
+          style: TextButton.styleFrom(
+            backgroundColor: primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
             ),
-            child: Text(
-              'Sign In',
-              style: primaryTextStyle.copyWith(
-                fontSize: 16,
-                fontWeight: medium,
-              ),
+          ),
+          child: Text(
+            'Sign In',
+            style: primaryTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: medium,
             ),
           ),
         ),
@@ -182,17 +178,14 @@ class _SignInPageState extends State<SignInPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Do not have an account?',
+              'Don\'t have an account?',
               style: subtitleTextStyle.copyWith(
                 fontSize: 12,
               ),
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUpPage()),
-                );
+                Navigator.pushNamed(context, '/sign-up');
               },
               child: Text(
                 'Sign Up',
@@ -201,7 +194,7 @@ class _SignInPageState extends State<SignInPage> {
                   fontWeight: medium,
                 ),
               ),
-            )
+            ),
           ],
         ),
       );
@@ -221,6 +214,7 @@ class _SignInPageState extends State<SignInPage> {
               header(),
               emailInput(),
               passwordInput(),
+              signInButton(),
               Spacer(),
               footer(),
             ],

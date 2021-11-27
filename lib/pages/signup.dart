@@ -336,6 +336,7 @@ class _SignUpPageState extends State<SignUpPage> {
               usernameInput(),
               emailInput(),
               passwordInput(),
+              signUpButton(),
               Spacer(),
               footer(),
             ],
