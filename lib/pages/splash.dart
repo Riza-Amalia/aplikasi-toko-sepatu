@@ -11,13 +11,12 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    getInit();
+    Timer(
+      Duration(seconds: 3),
+      () => Navigator.pushNamed(context, '/sign-in'),
+    );
 
     super.initState();
-  }
-
-  getInit() async {
-    Navigator.pushNamed(context, '/sign-in');
   }
 
   Widget build(BuildContext context) {
