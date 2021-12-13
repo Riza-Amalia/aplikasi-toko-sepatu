@@ -1,6 +1,8 @@
 import 'package:aplikasi_toko_sepatu/pages/signin.dart';
+import 'package:aplikasi_toko_sepatu/provider/auth_provider.dart';
 import 'package:aplikasi_toko_sepatu/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -16,10 +18,31 @@ class _SignUpPageState extends State<SignUpPage> {
 
   TextEditingController passwordController = TextEditingController(text: '');
 
-  bool isLoading = false;
-
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignUp() async {
+      if (await authProvider.register(
+        name: nameController.text,
+        username: usernameController.text,
+        email: emailController.text,
+        password: passwordController.text,
+      )) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Gagal Register!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+    }
+
     Widget header() {
       return Container(
         margin: EdgeInsets.only(top: 30),
@@ -269,7 +292,7 @@ class _SignUpPageState extends State<SignUpPage> {
           width: double.infinity,
           margin: EdgeInsets.only(top: 30),
           child: TextButton(
-            onPressed: () {},
+            onPressed: handleSignUp,
             style: TextButton.styleFrom(
               backgroundColor: primaryColor,
               shape: RoundedRectangleBorder(
