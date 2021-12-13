@@ -6,6 +6,7 @@ import 'package:aplikasi_toko_sepatu/pages/signup.dart';
 import 'package:aplikasi_toko_sepatu/pages/signin.dart';
 import 'package:aplikasi_toko_sepatu/pages/splash.dart';
 import 'package:aplikasi_toko_sepatu/provider/auth_provider.dart';
+import 'package:aplikasi_toko_sepatu/provider/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => AuthProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
         ),
       ],
       child: MaterialApp(
