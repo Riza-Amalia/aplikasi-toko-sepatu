@@ -1,32 +1,23 @@
+import 'package:aplikasi_toko_sepatu/model/user_model.dart';
+import 'package:aplikasi_toko_sepatu/provider/auth_provider.dart';
 import 'package:aplikasi_toko_sepatu/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
     header() {
       return AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.close),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         backgroundColor: bgColor1,
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'Edit Profile',
+          'Profile',
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.check,
-              color: primaryColor,
-            ),
-          ),
-        ],
       );
     }
 
@@ -45,9 +36,10 @@ class EditProfilePage extends StatelessWidget {
               ),
             ),
             TextFormField(
+              readOnly: true,
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: 'Name',
+                hintText: user.name,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -76,9 +68,10 @@ class EditProfilePage extends StatelessWidget {
               ),
             ),
             TextFormField(
+              readOnly: true,
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: 'Username',
+                hintText: user.username,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -107,9 +100,10 @@ class EditProfilePage extends StatelessWidget {
               ),
             ),
             TextFormField(
+              readOnly: true,
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: 'Email',
+                hintText: user.email,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(

@@ -1,9 +1,15 @@
+import 'package:aplikasi_toko_sepatu/model/user_model.dart';
+import 'package:aplikasi_toko_sepatu/provider/auth_provider.dart';
 import 'package:aplikasi_toko_sepatu/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
     Widget header() {
       return AppBar(
         backgroundColor: bgColor1,
@@ -17,8 +23,8 @@ class ProfilePage extends StatelessWidget {
             child: Row(
               children: [
                 ClipOval(
-                  child: Image.asset(
-                    'assets/image_profile.png',
+                  child: Image.network(
+                    user.profilePhotoUrl,
                     width: 64,
                   ),
                 ),
@@ -30,14 +36,14 @@ class ProfilePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hallo',
+                        'Hallo, ${user.name}',
                         style: primaryTextStyle.copyWith(
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight: semiBold,
                         ),
                       ),
                       Text(
-                        '@',
+                        '@${user.username}',
                         style: subtitleTextStyle.copyWith(
                           fontSize: 16,
                         ),
@@ -113,11 +119,8 @@ class ProfilePage extends StatelessWidget {
                   Navigator.pushNamed(context, '/edit-profile');
                 },
                 child: menuItem(
-                  'Edit Profile',
+                  'Profile',
                 ),
-              ),
-              menuItem(
-                'Your Order',
               ),
               menuItem(
                 'Help',
