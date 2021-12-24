@@ -92,6 +92,7 @@ class _SignInPageState extends State<SignInPage> {
                     Image.asset(
                       'assets/icon_email.png',
                       width: 17,
+                      color: primaryColor,
                     ),
                     SizedBox(
                       width: 16,
@@ -146,6 +147,7 @@ class _SignInPageState extends State<SignInPage> {
                     Image.asset(
                       'assets/icon_password.png',
                       width: 17,
+                      color: primaryColor,
                     ),
                     SizedBox(
                       width: 16,

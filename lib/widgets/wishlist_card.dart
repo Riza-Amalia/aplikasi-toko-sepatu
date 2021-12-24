@@ -1,9 +1,17 @@
+import 'package:aplikasi_toko_sepatu/model/product_model.dart';
+import 'package:aplikasi_toko_sepatu/provider/wishlist_provider.dart';
 import 'package:aplikasi_toko_sepatu/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class WishCard extends StatelessWidget {
+  final ProductModel product;
+  WishCard(this.product);
+
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+
     return Container(
       margin: EdgeInsets.only(
         top: 20,
@@ -22,8 +30,8 @@ class WishCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              'assets/image_shoe3.png',
+            child: Image.network(
+              product.galleries[0].url,
               width: 60,
             ),
           ),
@@ -35,14 +43,14 @@ class WishCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hiking',
+                  product.name,
                   style: primaryTextStyle.copyWith(
                     fontWeight: semiBold,
-                    fontSize: 14,
+                    fontSize: 16,
                   ),
                 ),
                 Text(
-                  '\$456',
+                  '\$${product.price}',
                   style: priceTextStyle.copyWith(
                     fontSize: 14,
                   ),
@@ -51,7 +59,9 @@ class WishCard extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              wishlistProvider.setProduct(product);
+            },
             child: Image.asset(
               'assets/button_wishlist_blue.png',
               width: 34,

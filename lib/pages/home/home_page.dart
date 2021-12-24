@@ -1,5 +1,6 @@
 import 'package:aplikasi_toko_sepatu/model/user_model.dart';
 import 'package:aplikasi_toko_sepatu/provider/auth_provider.dart';
+import 'package:aplikasi_toko_sepatu/provider/product_provider.dart';
 import 'package:aplikasi_toko_sepatu/theme.dart';
 import 'package:aplikasi_toko_sepatu/widgets/product_cart.dart';
 import 'package:aplikasi_toko_sepatu/widgets/product_tile.dart';
@@ -11,6 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
 
     Widget header() {
       return Container(
@@ -206,11 +208,11 @@ class HomePage extends StatelessWidget {
                 width: defaultMargin,
               ),
               Row(
-                children: [
-                  ProductCard(),
-                  ProductCard(),
-                  ProductCard(),
-                ],
+                children: productProvider.products
+                    .map(
+                      (product) => ProductCard(product),
+                    )
+                    .toList(),
               ),
             ],
           ),
@@ -237,17 +239,14 @@ class HomePage extends StatelessWidget {
 
     Widget newArrivals() {
       return Container(
-          margin: EdgeInsets.only(
-            top: 14,
-          ),
-          child: Column(
-            children: [
-              ProductTile(),
-              ProductTile(),
-              ProductTile(),
-              ProductTile(),
-            ],
-          ));
+        margin: EdgeInsets.only(
+          top: 14,
+        ),
+        child: Column(
+            children: productProvider.products
+                .map((product) => ProductTile(product))
+                .toList()),
+      );
     }
 
     return ListView(

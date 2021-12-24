@@ -1,8 +1,14 @@
+import 'package:aplikasi_toko_sepatu/model/product_model.dart';
+import 'package:aplikasi_toko_sepatu/provider/wishlist_provider.dart';
 import 'package:aplikasi_toko_sepatu/theme.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductPage extends StatefulWidget {
+  final ProductModel product;
+  ProductPage(this.product);
+
   @override
   _ProductPageState createState() => _ProductPageState();
 }
@@ -30,6 +36,8 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+
     Widget indicator(int index) {
       return Container(
         width: currentIndex == index ? 16 : 4,
@@ -79,18 +87,23 @@ class _ProductPageState extends State<ProductPage> {
                     Icons.chevron_left,
                   ),
                 ),
-                Image.asset(
-                  'assets/button_wishlist_blue.png',
-                  width: 30,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/wishlist');
+                  },
+                  child: Image.asset(
+                    'assets/button_wishlist_blue.png',
+                    width: 30,
+                  ),
                 ),
               ],
             ),
           ),
           CarouselSlider(
-            items: images
+            items: widget.product.galleries
                 .map(
-                  (image) => Image.asset(
-                    image,
+                  (image) => Image.network(
+                    image.url,
                     width: MediaQuery.of(context).size.width,
                     height: 310,
                     fit: BoxFit.cover,
@@ -110,7 +123,7 @@ class _ProductPageState extends State<ProductPage> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: images.map((e) {
+            children: widget.product.galleries.map((e) {
               index++;
               return indicator(index);
             }).toList(),
@@ -149,14 +162,14 @@ class _ProductPageState extends State<ProductPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Hiking 2.0',
+                          widget.product.name,
                           style: primaryTextStyle.copyWith(
                             fontSize: 18,
                             fontWeight: semiBold,
                           ),
                         ),
                         Text(
-                          'Hiking',
+                          widget.product.category.name,
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                           ),
@@ -164,43 +177,39 @@ class _ProductPageState extends State<ProductPage> {
                       ],
                     ),
                   ),
-                  Image.asset(
-                    'assets/button_wishlist.png',
-                    width: 46,
-                  ),
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     wishlistProvider.setProduct(widget.product);
+                  GestureDetector(
+                    onTap: () {
+                      wishlistProvider.setProduct(widget.product);
 
-                  //     if (wishlistProvider.isWishlist(widget.product)) {
-                  //       ScaffoldMessenger.of(context).showSnackBar(
-                  //         SnackBar(
-                  //           backgroundColor: secondaryColor,
-                  //           content: Text(
-                  //             'Has been added to the Whishlist',
-                  //             textAlign: TextAlign.center,
-                  //           ),
-                  //         ),
-                  //       );
-                  //     } else {
-                  //       ScaffoldMessenger.of(context).showSnackBar(
-                  //         SnackBar(
-                  //           backgroundColor: alertColor,
-                  //           content: Text(
-                  //             'Has been removed from the Whishlist',
-                  //             textAlign: TextAlign.center,
-                  //           ),
-                  //         ),
-                  //       );
-                  //     }
-                  //   },
-                  //   child: Image.asset(
-                  //     wishlistProvider.isWishlist(widget.product)
-                  //         ? 'assets/button_wishlist_blue.png'
-                  //         : 'assets/button_wishlist.png',
-                  //     width: 46,
-                  //   ),
-                  // ),
+                      if (wishlistProvider.isWishlist(widget.product)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: priceColor,
+                            content: Text(
+                              'Has been added to the Whishlist',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: alertColor,
+                            content: Text(
+                              'Has been removed from the Whishlist',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: Image.asset(
+                      wishlistProvider.isWishlist(widget.product)
+                          ? 'assets/button_wishlist_blue.png'
+                          : 'assets/button_wishlist.png',
+                      width: 46,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -226,7 +235,7 @@ class _ProductPageState extends State<ProductPage> {
                     style: primaryTextStyle,
                   ),
                   Text(
-                    '\$245',
+                    '\$${widget.product.price}',
                     style: priceTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,
@@ -257,7 +266,7 @@ class _ProductPageState extends State<ProductPage> {
                     height: 12,
                   ),
                   Text(
-                    'Keterangan',
+                    widget.product.description,
                     style: subtitleTextStyle.copyWith(
                       fontWeight: light,
                     ),

@@ -7,6 +7,7 @@ import 'package:aplikasi_toko_sepatu/pages/signin.dart';
 import 'package:aplikasi_toko_sepatu/pages/splash.dart';
 import 'package:aplikasi_toko_sepatu/provider/auth_provider.dart';
 import 'package:aplikasi_toko_sepatu/provider/product_provider.dart';
+import 'package:aplikasi_toko_sepatu/provider/wishlist_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => ProductProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => WishlistProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -33,7 +37,6 @@ class MyApp extends StatelessWidget {
           '/home': (context) => MainPage(),
           '/wishlist': (context) => WishlistPage(),
           '/edit-profile': (context) => EditProfilePage(),
-          '/product': (context) => ProductPage(),
         },
       ),
     );
