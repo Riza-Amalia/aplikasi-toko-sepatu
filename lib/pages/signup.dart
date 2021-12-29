@@ -99,6 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Image.asset(
                       'assets/icon_name.png',
                       width: 17,
+                      color: primaryColor,
                     ),
                     SizedBox(
                       width: 16,
@@ -153,6 +154,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Image.asset(
                       'assets/icon_username.png',
                       width: 17,
+                      color: primaryColor,
                     ),
                     SizedBox(
                       width: 16,
@@ -207,6 +209,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Image.asset(
                       'assets/icon_email.png',
                       width: 17,
+                      color: primaryColor,
                     ),
                     SizedBox(
                       width: 16,
@@ -261,6 +264,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Image.asset(
                       'assets/icon_password.png',
                       width: 17,
+                      color: primaryColor,
                     ),
                     SizedBox(
                       width: 16,

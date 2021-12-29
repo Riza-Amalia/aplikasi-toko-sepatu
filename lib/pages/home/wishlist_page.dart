@@ -1,10 +1,14 @@
+import 'package:aplikasi_toko_sepatu/provider/wishlist_provider.dart';
 import 'package:aplikasi_toko_sepatu/theme.dart';
 import 'package:aplikasi_toko_sepatu/widgets/wishlist_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+
     Widget header() {
       return AppBar(
         backgroundColor: bgColor1,
@@ -45,7 +49,7 @@ class WishlistPage extends StatelessWidget {
               Text(
                 'Let\'s find your favorite shoes',
                 style: secondaryTextStyle.copyWith(
-                  fontSize: 12,
+                  fontSize: 16,
                 ),
               ),
               SizedBox(
@@ -54,7 +58,9 @@ class WishlistPage extends StatelessWidget {
               Container(
                 height: 44,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/home');
+                  },
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.symmetric(
                       vertical: 10,
@@ -85,11 +91,13 @@ class WishlistPage extends StatelessWidget {
         child: Container(
           color: bgColor3,
           child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-              children: [
-                WishCard(),
-                WishCard(),
-              ]),
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            children: wishlistProvider.wishlist
+                .map(
+                  (product) => WishCard(product),
+                )
+                .toList(),
+          ),
         ),
       );
     }
@@ -97,8 +105,8 @@ class WishlistPage extends StatelessWidget {
     return Column(
       children: [
         header(),
-        content(),
-        // wishlistProvider.wishlist.length == 0 ? emptyWishlist() : content(),
+        // emptyWishlist(),
+        wishlistProvider.wishlist.length == 0 ? emptyWishlist() : content(),
       ],
     );
   }

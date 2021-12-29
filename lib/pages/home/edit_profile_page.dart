@@ -133,11 +133,14 @@ class EditProfilePage extends StatelessWidget {
                 top: defaultMargin,
               ),
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage('assets/image_profile.png'),
-                  )),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: NetworkImage(
+                    user.profilePhotoUrl,
+                  ),
+                ),
+              ),
             ),
             nameInput(),
             usernameInput(),
