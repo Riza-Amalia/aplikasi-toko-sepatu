@@ -100,10 +100,10 @@ class _ProductPageState extends State<ProductPage> {
             ),
           ),
           CarouselSlider(
-            items: widget.product.galleries
+            items: images
                 .map(
-                  (image) => Image.network(
-                    image.url,
+                  (image) => Image.asset(
+                    image,
                     width: MediaQuery.of(context).size.width,
                     height: 310,
                     fit: BoxFit.cover,
@@ -123,7 +123,7 @@ class _ProductPageState extends State<ProductPage> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: widget.product.galleries.map((e) {
+            children: images.map((e) {
               index++;
               return indicator(index);
             }).toList(),
@@ -162,14 +162,14 @@ class _ProductPageState extends State<ProductPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.product.name,
+                          'ADIDDAS URBAN LOW',
                           style: primaryTextStyle.copyWith(
                             fontSize: 18,
                             fontWeight: semiBold,
                           ),
                         ),
                         Text(
-                          widget.product.category.name,
+                          'Sport',
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                           ),
@@ -235,7 +235,7 @@ class _ProductPageState extends State<ProductPage> {
                     style: primaryTextStyle,
                   ),
                   Text(
-                    '\$${widget.product.price}',
+                    '\$149.2',
                     style: priceTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,
@@ -266,7 +266,7 @@ class _ProductPageState extends State<ProductPage> {
                     height: 12,
                   ),
                   Text(
-                    widget.product.description,
+                    'Sepatu merk Adiddas Low ',
                     style: subtitleTextStyle.copyWith(
                       fontWeight: light,
                     ),

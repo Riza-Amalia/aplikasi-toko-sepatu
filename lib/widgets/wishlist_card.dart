@@ -30,8 +30,8 @@ class WishCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              product.galleries[0].url,
+            child: Image.asset(
+              'assets/image_shoe2.png',
               width: 60,
             ),
           ),
@@ -43,14 +43,14 @@ class WishCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product.name,
+                  'TERREX URBAN LEGEND',
                   style: primaryTextStyle.copyWith(
                     fontWeight: semiBold,
                     fontSize: 16,
                   ),
                 ),
                 Text(
-                  '\$${product.price}',
+                  '\$237.9',
                   style: priceTextStyle.copyWith(
                     fontSize: 14,
                   ),

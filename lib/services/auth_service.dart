@@ -3,7 +3,7 @@ import 'package:aplikasi_toko_sepatu/model/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  String baseUrl = 'http://172.31.160.1:8000/api/';
+  String baseUrl = 'http://169.254.39.66:8000/api/';
 
   Future<UserModel> register({
     required String name,
