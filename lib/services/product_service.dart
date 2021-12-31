@@ -3,7 +3,7 @@ import 'package:aplikasi_toko_sepatu/model/product_model.dart';
 import 'package:http/http.dart' as http;
 
 class ProductService {
-  String baseUrl = 'https://shamo-backend.buildwithangga.id/api';
+  String baseUrl = 'http://169.254.39.66:8000/api/';
 
   Future<List<ProductModel>> getProducts() async {
     var url = Uri.parse('$baseUrl/products');
