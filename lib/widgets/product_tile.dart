@@ -29,7 +29,7 @@ class ProductTile extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.asset(
-                'assets/image_shoe3.png',
+                'assets/image_shoe10.png',
                 width: 120,
                 height: 120,
                 fit: BoxFit.cover,
@@ -43,7 +43,7 @@ class ProductTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'NIKE LOW SHOES',
+                    product.category.name,
                     style: secondaryTextStyle.copyWith(
                       fontSize: 12,
                     ),
@@ -52,7 +52,7 @@ class ProductTile extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    'Sport',
+                    product.name,
                     style: primaryTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,
@@ -63,7 +63,7 @@ class ProductTile extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    '\$70.3',
+                    '\$${product.price}',
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
                     ),

@@ -15,9 +15,9 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   List images = [
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
-    'assets/image_shoe.png',
+    'assets/image_shoe8.png',
+    'assets/image_shoe8_1.png',
+    'assets/image_shoe8_2.png',
   ];
 
   List familiarShoes = [
@@ -162,14 +162,14 @@ class _ProductPageState extends State<ProductPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'ADIDDAS URBAN LOW',
+                          widget.product.name,
                           style: primaryTextStyle.copyWith(
                             fontSize: 18,
                             fontWeight: semiBold,
                           ),
                         ),
                         Text(
-                          'Sport',
+                          widget.product.category.name,
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                           ),
@@ -235,7 +235,7 @@ class _ProductPageState extends State<ProductPage> {
                     style: primaryTextStyle,
                   ),
                   Text(
-                    '\$149.2',
+                    '\$${widget.product.price}',
                     style: priceTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,
@@ -266,7 +266,7 @@ class _ProductPageState extends State<ProductPage> {
                     height: 12,
                   ),
                   Text(
-                    'Sepatu merk Adiddas Low ',
+                    widget.product.description,
                     style: subtitleTextStyle.copyWith(
                       fontWeight: light,
                     ),

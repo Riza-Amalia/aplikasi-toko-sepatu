@@ -35,7 +35,7 @@ class ProductCard extends StatelessWidget {
               height: 30,
             ),
             Image.asset(
-              'assets/image_shoe4.png',
+              'assets/image_shoe7.png',
               width: 215,
               height: 150,
               fit: BoxFit.cover,
@@ -48,7 +48,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'COURT VISION 2.0',
+                    product.category.name,
                     style: secondaryTextStyle.copyWith(
                       fontSize: 12,
                     ),
@@ -57,7 +57,7 @@ class ProductCard extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    'Hiking',
+                    product.name,
                     style: blackTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: semiBold,
@@ -69,7 +69,7 @@ class ProductCard extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    '\$210.2',
+                    '\$${product.price}',
                     style: priceTextStyle.copyWith(
                       fontSize: 14,
                       fontWeight: medium,

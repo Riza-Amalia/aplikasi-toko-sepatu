@@ -6,7 +6,7 @@ class ProductService {
   String baseUrl = 'http://169.254.39.66:8000/api/';
 
   Future<List<ProductModel>> getProducts() async {
-    var url = Uri.parse('$baseUrl/products');
+    var url = Uri.parse(baseUrl + 'products');
     var headers = {'Content-Type': 'application/json'};
 
     var response = await http.get(url, headers: headers);
